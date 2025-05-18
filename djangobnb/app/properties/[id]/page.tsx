@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const PropertyDetailPage = () => {
     return (
-            <main className="max-w-[1500px] mx-auto px-6 mt-11 pb-10">
+            <main className="max-w-[1500px] mx-auto px-6 pb-10">
                 <div className="w-full h-[64vh] overflow-hidden rounded-xl relative">
                     <Image
                         fill
