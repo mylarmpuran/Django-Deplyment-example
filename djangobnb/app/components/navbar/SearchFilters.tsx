@@ -1,25 +1,25 @@
 const SearchFilter = () => {
     return (
-     <div className="h-[64px] flex flex-row items-center justify-between border-2 border-green-500 rounded-full">
+     <div className="h-[64px] flex flex-row items-center justify-between border border-white-500 rounded-full">
 
         <div>
             <div className="flex flex-row items-center justify-between ">
-                <div className="cursor-pointer w-[250px] h-[64px] px-8 flex flex-col justify-center border-2 border-blue-500 rounded-full hover:bg-gray-100">
+                <div className="cursor-pointer w-[250px] h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-100">
                      <p className="text-xs font-semibold">Where</p>
                     <p className="text-xs font-semibold">Wanted location</p>
                 </div>
                 
-                <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center border-2 border-blue-500 rounded-full hover:bg-gray-100">
+                <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-100">
                      <p className="text-xs font-semibold">Check in</p>
                     <p className="text-xs font-semibold">Add dates</p>
                 </div>
 
-                <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center border-2 border-blue-500 rounded-full hover:bg-gray-100">
+                <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-100">
                      <p className="text-xs font-semibold">Check out</p>
                     <p className="text-xs font-semibold">Add dates</p>
                 </div>
 
-                <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center border-2 border-blue-500 rounded-full hover:bg-gray-100">
+                <div className=" cursor-pointer h-[64px] px-8 flex flex-col justify-center rounded-full hover:bg-gray-100">
                      <p className="text-xs font-semibold">Who</p>
                     <p className="text-xs font-semibold">Add guests</p>
                 </div>

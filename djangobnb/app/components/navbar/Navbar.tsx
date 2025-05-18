@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from 'next/image'
 import SearchFilters from './SearchFilters'
 import UserNav from "./UserNav"
+import AddPropertyButton from "./AddPropertyButton"
 
 
 const Navbar = () => {
@@ -10,22 +11,26 @@ const Navbar = () => {
             <div className="max-w-[1500px] mx-auto px-6">
                 <div className="flex justify-between items-center">
                     <Link href="/" >
-                    <Image
-                        src="/airbnblogo.jpeg"
-                        width={90}
-                        height={10}
-                        alt="DjangoBnb logo"
-                        />  
-                                 
+                        <Image
+                            src="/airbnblogo.jpeg"
+                            width={90}
+                            height={10}
+                            alt="DjangoBnb logo"
+                            />  
+                             
                     </Link>   
 
 
-                    <div className="flex space-x-6">
+                    <div className="hidden lg:flex  space-x-6 ">
                         <SearchFilters/>
                     </div>
 
                     <div className="flex items-center space-x-6">
                         <UserNav/>
+                    </div>
+
+                     <div className="flex items-center space-x-6">
+                        <AddPropertyButton/>
                     </div>
                          
 
