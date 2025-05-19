@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Categories from "./components/Categories";
 import PropertyList from "./components/properties/PropertyList";
+import "./globals.css";
 
 export default function Home() {
   return (
