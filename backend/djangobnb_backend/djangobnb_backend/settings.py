@@ -65,6 +65,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://64.226.81.32:1337'
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 REST_AUTH = {
     "USE_JWT": True,
     "JWT_AUTH_HTTPONLY": False
