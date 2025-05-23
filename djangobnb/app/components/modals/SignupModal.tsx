@@ -3,26 +3,79 @@
 import Modal from "./Modal";
 
 import { useState } from "react"
+import { useRouter } from "next/navigation";
 import useSignupModal from "@/app/hooks/useSignupModal"
 import CustomButton from "../forms/CustomButton";
+import apiServices from "@/app/services/apiService";
 
 const SignupModal = () => {
+    //
+    // Variables
 
-    const signupModal = useSignupModal()
+
+    const router = useRouter();
+    const signupModal = useSignupModal();
+    const [email, setEmail] = useState('');
+    const [errors, setErrors] = useState<string[]>([]);
+    const [password1, setPassword1] = useState('');
+    const [password2, setPassword2] = useState('');
+
+    //
+    // Submit functionality
+
+    const submitSignup = async () => {
+        const formData = {
+            email: email,
+            password1 : password1,
+            password2: password2
+        }
+
+        const response = await apiServices.post('/api/auth/register/', JSON.stringify(formData));
+
+        if (response.access){
+            // handleLogin
+
+            signupModal.close();
+
+            router.push('/')
+            
+        }else {
+            const tmpErrors: string[] = Object.values(response).map((error:any) => {
+                return error;
+            })
+
+            setErrors(tmpErrors);
+        }
+    }
 
     const content = (
         <>
         <h1 className="mb-6 text-2xl">Welcome to Djangobnb, please Signup</h1>
-        <form className="space-y-4">
-            <input type="email" placeholder="Your password" className="w-full h-[54px] px-4  border border-gray-300 rounded-xl" />
-            <input type="password" placeholder="repeat Password" className="w-full h-[54px] px-4  border border-gray-300 rounded-xl" />
-            <div className="p-5 bg-airbnb  text-white rounded-xl opacity-80">
-                The error message
-            </div>
+        <form 
+            action={submitSignup}
+            className="space-y-4">
+            <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your password" className="w-full h-[54px] px-4  border border-gray-300 rounded-xl" />
+
+            <input onChange={(e) => setPassword1(e.target.value)}type="password1" placeholder="repeat Password" className="w-full h-[54px] px-4  border border-gray-300 rounded-xl" />
+
+            <input onChange={(e) => setPassword2(e.target.value)}type="password2" placeholder="repeat Password" className="w-full h-[54px] px-4  border border-gray-300 rounded-xl" />
+
+            {errors.map((error, index) => {
+
+                           return(
+                              <div 
+                                    key={`error_${index}`}
+                                    className="p-5 bg-airbnb  text-white rounded-xl opacity-80">
+                                    The {error} message
+                                </div>
+                )
+            }
+     
+            )}          
 
             <CustomButton
                 label="Submit"
-                onClick = {() => console.log("submitted")}
+                onClick = {submitSignup}
             />
         </form>
         </>

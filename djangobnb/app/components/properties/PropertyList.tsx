@@ -20,6 +20,8 @@ const PropertyList = () => {
 
         const tmpProperties = await apiServices.get(url)
 
+        console.log(tmpProperties.data)
+
         setProperties(tmpProperties.data)
     };
 
