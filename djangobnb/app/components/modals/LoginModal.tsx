@@ -47,7 +47,9 @@ const LoginModal = () => {
             
             {errors.map((error, index) => {
                 return (
-                    <div className="p-5 bg-airbnb  text-white rounded-xl opacity-80">
+                    <div 
+                        key={`error_${index}`}
+                        className="p-5 bg-airbnb  text-white rounded-xl opacity-80">
                             {error}
                     </div>
                 )
