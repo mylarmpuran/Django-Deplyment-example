@@ -7,6 +7,7 @@ import Modal from './Modal';
 import useAddPropertyModal from '@/app/hooks/useAddPropertyModal';
 import CustomButton from '../forms/CustomButton';
 import Categories from '../addproperty/Categories';
+import SelectCountry, {SelectCountryValue} from '../forms/SelectCountry';
 
 const AddPropertyModal = () => {
     //state
@@ -18,6 +19,8 @@ const AddPropertyModal = () => {
     const [dataBedrooms, setDataBedrooms] = useState('');
     const [dataBathrooms, setDataBathrooms]= useState('');
     const [dataGuests, setDataGuests]= useState('');
+    const [dataCountry, setDataCountry] = useState<SelectCountryValue>();
+    const [dataImage, setDataImage] = useState<File | null>(null);
 
 
     //
@@ -75,7 +78,7 @@ const AddPropertyModal = () => {
                             onClick={() => setCurrentStep(1)}
                         />
                         <CustomButton            
-                            label="Previous"
+                            label="Next"
                             onClick={() => setCurrentStep(3)}
                         />
                     </>
@@ -99,7 +102,7 @@ const AddPropertyModal = () => {
                                     <label>Bedrooms</label>
                                     <input
                                         type='number'
-                                        value={dataPrice}
+                                        value={dataBedrooms}
                                         onChange={(e) => setDataBedrooms(e.target.value)}
                                         className='w-full p-4 border border-gray-600 rounded-6xl'
                                         />
@@ -108,13 +111,13 @@ const AddPropertyModal = () => {
                                     <label>Bathrooms</label>
                                     <input
                                         type='number'
-                                        value={dataPrice}
+                                        value={dataBathrooms}
                                         onChange={(e) => setDataBathrooms(e.target.value)}
                                         className='w-full p-4 border border-gray-600 rounded-6xl'
                                         />
                                 </div>
                                  <div>
-                                    <label>Bedrooms</label>
+                                    <label>Maximum number of guests</label>
                                     <input
                                         type='number'
                                         value={dataGuests}
@@ -131,13 +134,39 @@ const AddPropertyModal = () => {
                             onClick={() => setCurrentStep(1)}
                         />
                         <CustomButton            
-                            label="Previous"
-                            onClick={() => setCurrentStep(3)}
+                            label="Next"
+                            onClick={() => setCurrentStep(4)}
                             />
                     </>
-                    ) :
+                    ) : currentStep == 4 ? (
+                        <>
+                            <h2 className='mb-6 text-2xl'>Location</h2>
 
-                    <p>asdf</p>
+
+                            <div className='pt-3 pb-6 space-y-4'>
+                                <SelectCountry 
+                                    value={dataCountry}
+                                    onChange={(value) => setDataCountry(value as SelectCountryValue)}
+                                 />
+                            </div>
+
+                             <CustomButton            
+                            label="Previous"
+                            className='mb-2 bg-black hover:bg-gray-800'
+                            onClick={() => setCurrentStep(3)}
+                        />
+                        <CustomButton            
+                            label="Next"
+                            onClick={() => setCurrentStep(5)}
+                            />
+                        </>
+                    ) : 
+
+                    <>
+                        <p>asdf</p>
+                    </>
+
+                   
             }
             
         </>
