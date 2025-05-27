@@ -236,7 +236,21 @@ const AddPropertyModal = () => {
                                     />
                                 </div>
                             )}
-                                 <CustomButton            
+                                
+                        </div>
+
+                        {errors.map((error, index) => {
+                            return(
+                                <div
+                                    key={index}
+                                    className="p-5 mb-4 bg-airbnb text-white rounded-xl opacity-80">
+                                  {error}
+                                </div>
+                                
+                            )
+                        })}
+
+                         <CustomButton            
                                     label="Previous"
                                     className='mb-2 bg-black hover:bg-gray-800'
                                     onClick={() => setCurrentStep(4)}
@@ -245,8 +259,6 @@ const AddPropertyModal = () => {
                                     label="Submit"
                                     onClick={submitForm}
                                 />
-
-                        </div>
                     </>
                    
             }

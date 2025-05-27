@@ -1,10 +1,40 @@
+'use_client'
 
 
-const ReservationSidebar = () => {
+import {useState, useEffect} from 'react';
+import {Range} from 'react-date-range';
+
+
+
+import apiServices from '@/app/services/apiService';
+import useLoginModal from '@/app/hooks/useLoginModal';
+
+
+const initialDateRange = {
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection'
+}
+
+
+export type Property = {
+    id: string,
+    guest: number,
+    price_per_night: number;
+}
+
+interface ReservationSidebarProps {
+    userId: string | null,
+    property: Property
+}
+
+const ReservationSidebar: React.FC<ReservationSidebarProps> = ({
+    property
+}) => {
     return(
         <aside className="w-full p-6 col-span-2 rounded-xl border border-gray-300 shadow">
             <h2 className="mb-5 text-2xl">
-                $200 per night
+                ${property.price_per_night}per night
             </h2>
 
             <div className="mb-6 p-3 border border-gray-400 rounded-xl">
