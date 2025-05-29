@@ -5,13 +5,23 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework_simplejwt.tokens import AccessToken
 
 from .models import Property, Reservation
-from .serializers import PropertiesListSerializer, PropertiesDetailSerializer
+from .serializers import PropertiesListSerializer, PropertiesDetailSerializer, ReservationsListSerializer
 
 @api_view(["GET"])
 @authentication_classes([])
 @permission_classes([])
 def properties_list(request):
     properties = Property.objects.all()
+    #
+    # Filter
+
+    landlord_id = request.GET.get('landlord_id','')
+    
+    if landlord_id:
+        properties = properties.filter(landlord_id=landlord_id)
+
+    ##
+    
     serializer = PropertiesListSerializer(properties, many=True)
 
     return JsonResponse({
@@ -28,6 +38,19 @@ def properties_detail(request, pk):
     serializer = PropertiesDetailSerializer(property, many=False)
 
     return JsonResponse(serializer.data)
+
+
+@api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
+def property_reservations(request, pk):
+    property = Property.objects.get(pk=pk)
+    reservations = property.reservations.all()
+
+    serializer = ReservationsListSerializer(reservations, many=True)
+
+    return JsonResponse(serializer.data, safe=False)
+
 
 @api_view(['POST', 'FILES'])
 def create_property(request):
