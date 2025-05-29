@@ -6,14 +6,17 @@ import Link from "next/link";
 const MyReservationPage = async () => {
 
     const reservations = await apiServices.get('/api/auth/myreservations/')
+    console.log(reservations)
       return (
         <main className="max-w-[1500px] mx-auto px-6 pb-6">
             <h1 className="my-6 text-2xl">My reservations</h1>
 
             <div className="space-y-4">
-                {reservations.map((reservation: any) => {
+                {reservations.map((reservation: any, key:number) => {
                     return (              
-                        <div className="p-5 grid grid-cols-1 md:grid-cols-4 gap-4 shadow-md border border-gray-300 rounded-xl">
+                        <div 
+                            key={key}
+                            className="p-5 grid grid-cols-1 md:grid-cols-4 gap-4 shadow-md border border-gray-300 rounded-xl">
                             <div className="col-span-1">
                                 <div className="relative overflow-hidden aspect-square rounded-xl">
                                     <Image
