@@ -8,7 +8,7 @@ import apiServices from "@/app/services/apiService";
 import { getUserId } from "@/app/lib/actions";
 
 const PropertyDetailPage = async ({params}: { params: {id: string }}) => {
-
+    const { id } =  params;
     const property = await apiServices.get(`/api/properties/${params.id}`)
     const userId = await getUserId();
     return (
